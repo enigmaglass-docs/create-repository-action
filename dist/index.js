@@ -8969,7 +8969,7 @@ async function run() {
 
       core.info('Error Object: ' + error);
 
-      core.info('Length of access-token: ' + length(accessToken));
+      core.info('Length of access-token: ' + accessToken.length);
 
       core.info('Repository already exists.');
       core.setOutput('id', null);
