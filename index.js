@@ -24,7 +24,11 @@ async function run() {
       core.info('Repository created: ' + repository.data.html_url);
       core.setOutput('id', repository.data.node_id);
     }).catch((error) => {
-      core.info('Error: ' + error.message);
+      core.info('Error Message: ' + error.message);
+
+      core.info('Error Object: ' + error);
+
+      core.info('Length of access-token: ' + length(accessToken));
 
       core.info('Repository already exists.');
       core.setOutput('id', null);
