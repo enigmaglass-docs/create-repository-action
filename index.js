@@ -17,7 +17,7 @@ async function run() {
       },
       {
         headers: {
-          Authorization: 'token ' + accessToken
+          Authorization: 'Bearer ' + accessToken
         }
       }
     ).then((repository) => {
@@ -25,6 +25,7 @@ async function run() {
       core.setOutput('id', repository.data.node_id);
     }).catch((error) => {
       core.info('Error: ' + error.message);
+
       core.info('Repository already exists.');
       core.setOutput('id', null);
     })
