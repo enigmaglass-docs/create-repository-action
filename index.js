@@ -23,7 +23,8 @@ async function run() {
     ).then((repository) => {
       core.info('Repository created: ' + repository.data.html_url);
       core.setOutput('id', repository.data.node_id);
-    }).catch(() => {
+    }).catch((error) => {
+      core.info('Error: ' + error.message);
       core.info('Repository already exists.');
       core.setOutput('id', null);
     })
