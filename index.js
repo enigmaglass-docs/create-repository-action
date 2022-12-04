@@ -12,7 +12,9 @@ async function run() {
       'https://api.github.com' + endpoint,
       {
         name,
+        homepage: 'https://enigmaglass-docs.github.io/' + name,
         private: false,
+        has_pages: true,
         auto_init: true
       },
       {
@@ -25,11 +27,6 @@ async function run() {
       core.setOutput('id', repository.data.node_id);
     }).catch((error) => {
       core.info('Error Message: ' + error.message);
-
-      core.info('Error Object: ' + error);
-
-      core.info('Length of access-token: ' + accessToken.length);
-
       core.info('Repository already exists.');
       core.setOutput('id', null);
     })
