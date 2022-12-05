@@ -8,7 +8,7 @@ async function run() {
     const accessToken = core.getInput('access-token');
 
     const endpoint = org ? `/orgs/${org}/repos` : '/user/repos'
-    const pages_endpoint = org ? `/orgs/${org}/${name}` : `/user/${name}`
+    const pages_endpoint = org ? `/orgs/${org}/${name}/pages` : `/user/${name}/pages`
     // create repository
     axios.post(
       'https://api.github.com' + endpoint,
