@@ -8949,8 +8949,6 @@ async function run() {
     const accessToken = core.getInput('access-token');
 
     const endpoint = org ? `/orgs/${org}/repos` : '/user/repos'
-    const pages_endpoint = org ? `/repos/${org}/${name}/pages` : `/user/${name}/pages`
-    // create repository
     axios.post(
       'https://api.github.com' + endpoint,
       {
@@ -8971,29 +8969,8 @@ async function run() {
     }).catch((error) => {
       core.info('Repository already exists...');
       //core.setFailed(error.message);
-      //core.setOutput('id', null);
+      core.setOutput('id', null);
     })
-  
-    axios.post(
-      'https://api.github.com' + pages_endpoint,
-      {
-        source: {
-          branch: "main"
-        }
-      },
-      {
-        headers: {
-          Authorization: 'Bearer ' + accessToken
-        }
-      }
-    ).then((response) => {
-      core.info('Page created: ' + response.data.html_url);
-      //core.setOutput('id', repository.data.node_id);
-    }).catch((error) => {
-      core.setFailed(error.message);
-      // core.setOutput('id', null);
-    })
-  
   } catch (error) {
     core.setFailed(error.message);
   }
