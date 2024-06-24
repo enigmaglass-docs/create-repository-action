@@ -12,19 +12,22 @@ async function run() {
       'https://api.github.com' + endpoint,
       {
         name,
+        visibility: 'public',
+        homepage: 'https://enigmaglass-docs.github.io/' + name,
         private: false,
         auto_init: true
       },
       {
         headers: {
-          Authorization: 'token ' + accessToken
+          Authorization: 'Bearer ' + accessToken
         }
       }
     ).then((repository) => {
       core.info('Repository created: ' + repository.data.html_url);
       core.setOutput('id', repository.data.node_id);
-    }).catch(() => {
-      core.info('Repository already exists.');
+    }).catch((error) => {
+      core.info('Repository already exists...');
+      //core.setFailed(error.message);
       core.setOutput('id', null);
     })
   } catch (error) {
